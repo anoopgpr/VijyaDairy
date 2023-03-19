@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1007552296317",
+    "project_id": "vijaya-dairy",
+    "storage_bucket": "vijaya-dairy.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1007552296317:android:f2de6df1dd7a73d9b6c814",
+        "android_client_info": {
+          "package_name": "com.mobiquest.vijayadairy"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1007552296317-040banasif0bgpchk029ku1mliaa5jvs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBdLeJLJ8B_KNcGlYLy3lIIzxNCOa6cOFI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1007552296317-040banasif0bgpchk029ku1mliaa5jvs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

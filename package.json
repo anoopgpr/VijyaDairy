@@ -1,0 +1,37 @@
+{
+    "name": "monaca-template-minimum",
+    "version": "2.4.0",
+    "displayName": "Monaca Template Minimum",
+    "dependencies": {
+        "cordova-plugin-splashscreen": "6.0.0",
+        "monaca-plugin-monaca-core": "3.3.1",
+        "cordova-plugin-androidx-adapter": "git+https://github.com/dpa99c/cordova-plugin-androidx-adapter",
+        "cordova-plugin-device": "2.1.0",
+        "cordova-plugin-file": "7.0.0",
+        "cordova-plugin-file-transfer": "git+https://github.com/apache/cordova-plugin-file-transfer",
+        "cordova-plugin-media": "6.0.0",
+        "cordova-plugin-inappbrowser": "git+https://github.com/apache/cordova-plugin-inappbrowser",
+        "@havesource/cordova-plugin-push": "git+https://github.com/havesource/cordova-plugin-push"
+    },
+    "scripts": {
+        "monaca:preview": "npm run dev",
+        "dev": "browser-sync start -s www/ --watch --port 8080 --ui-port 8081"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-splashscreen": {},
+            "monaca-plugin-monaca-core": {},
+            "cordova-plugin-androidx-adapter": {},
+            "cordova-plugin-device": {},
+            "cordova-plugin-file": {},
+            "cordova-plugin-file-transfer": {},
+            "cordova-plugin-media": {},
+            "cordova-plugin-inappbrowser": {},
+            "@havesource/cordova-plugin-push": {}
+        }
+    },
+    "devDependencies": {
+        "browser-sync": "~2.27.7",
+        "cordova": "^11.0.0"
+    }
+}

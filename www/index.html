@@ -1,0 +1,2913 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Vijaya Dairy</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,minimum-scale=1, user-scalable=no,height=device-height">
+	<link rel="stylesheet" href="assets/css/jquery.mobile-1.4.5.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link rel="stylesheet" href="assets/css/mloyal.css">
+	<link rel="stylesheet" href="assets/css/vertical.min.css">
+	<link rel="stylesheet" href="assets/css/botui.min.css" />
+	<link rel="stylesheet" href="assets/css/botui-theme-custom.css" />	
+	<link rel="stylesheet" href="assets/css/owl.carousel.min.css" media="all" />
+	<link rel="stylesheet" href="assets/css/owl.theme.default.css" media="all" />
+	<script src="assets/js/jquery-1.11.1.min.js"></script> 
+	<script src="assets/js/jquery.mobile-1.4.5.min.js"></script> 	
+	<script src="https://cdn.jsdelivr.net/vue/latest/vue.min.js"></script>
+	<script src="assets/js/botui.js"></script>
+	<script src="assets/js/delivery-bot.js"></script>	
+    <script src="assets/js/owl.carousel.min.js"></script>
+	<script type="text/javascript" charset="utf-8" src="cordova.js"></script> 
+	<script src="assets/js/mloyal.js"></script> 
+	<script type="text/javascript">
+				$(document).ready(function(){
+					$("#sidebar2").enhanceWithin().panel();
+					$("#sidebar2").hide();
+				})
+
+			var deviceType;
+
+			document.addEventListener("deviceready", onDeviceReady, false);
+
+			function onDeviceReady() 
+			{
+
+
+				   deviceType = (navigator.userAgent.match(/iPad/i)) == "iPad" ? "iPad" : (navigator.userAgent.match(/iPhone/i)) == "iPhone" ? "iPhone" : (navigator.userAgent.match(/Android/i)) == "Android" ? "Android" : (navigator.userAgent.match(/BlackBerry/i)) == "BlackBerry" ? "BlackBerry" : "null";
+					 if(deviceType=='null')
+						deviceType='Android';
+
+
+						$("#sidebar").show();
+						$("#sidebar").enhanceWithin().panel();
+
+						//$("#sidebar2").show();
+						//receivedEvent('deviceready');
+
+
+			}
+
+		</script>
+</head>
+<body>
+<div data-role="page" data-dom-cache="true" id="selectcategorypage" class="bg-dark full_height">		
+		<div data-role="content" class="ui-content">			
+			<div class="loginreg">
+				<div class="login_logo"> <img src="assets/images/logo.png" alt="Brand Logo" /> </div>
+				<div class="loginreg_inner">
+					<h3 class="login_heading">Please Select Your Role</h3>
+					<div class="form-group mt-20 py-4">
+						<div class="select_role_block">
+							<select name="select_role" id="select_role" data-role="none">
+							    <option value="">-Select-</option>
+								<option value="distributor">Distributor</option>
+								<option value="boothoperator">Booth Operator</option>
+							</select>
+						</div>
+						<div class="clear"></div>
+					</div>
+					<div class="form-group mt-20">
+						<a href="javascript:savecategory();" class="btn btn_primary">Next</a>
+					</div>
+					<div class="text-center mt-20"><a href="#contactus" class="login_opt">Contact Us/Policy</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div data-role="page" data-dom-cache="true" id="login_pg" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0 d-flex align-items-start login_content">
+    <div class="loginreg mt-50">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Welcome!</h1>
+        <div class="form-group">
+          <label class="form_label">Username</label>
+          <div class="custom-input">
+            <input type="text" id="username" name="username" placeholder="Username" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+          <label class="form_label">Password</label>
+          <div class="custom-input">
+            <input type="password"  placeholder="Password" id="password_myacc" class="form-input" data-role="none" />
+            <label class="show_pass_btn">
+              <input type="checkbox" onclick="javascript:showpass1('password_myacc');" data-role="none" >
+              <span></span> </label>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-10">
+          <label class="d-inline-flex align-items-center justify-content-start mb-0">
+          <div class="custom_check_login" style="display:none;">
+            <input type="checkbox" data-role="none">
+            <span></span> </div>
+          <p style="display:none;">Remember Me</p>
+          </label>
+          <!-- <div class="d-inline-flex align-items-center justify-content-start"> <a href="#page-forgot-password" class="forgot_link">Forgot Password?</a> </div> -->
+        </div>
+        <div class="form-group mt-20"> <a href="javascript:authenticate_dist();" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+	  
+      <!-- <div class="text-center mt-20">Don't have account? <a href="#page-forgot-password" class="login_opt">Register</a></div> -->
+	  <div class="text-center mt-20"><a href="#selectcategorypage" class="login_opt">Back</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_none" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+
+<!--<div data-role="page" data-dom-cache="true" id="login_pg" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0 d-flex align-items-start login_content">
+    <div class="loginreg mt-50">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Welcome!</h1>
+        <div class="form-group">
+          <label class="form_label">Mobile Number</label>
+          <div class="custom-input">
+            <input type="text" id="username" name="username" placeholder="Mobile Number" class="form-input" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+          <label class="form_label">OTP</label>
+          <div class="custom-input">
+            <input type="password"  placeholder="OTP" id="password_myacc" class="form-input" data-role="none" />
+            <label class="show_pass_btn">
+              <input type="checkbox" onclick="javascript:showpass1('password_myacc');" data-role="none" >
+              <span></span> </label>
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-10">
+          <label class="d-inline-flex align-items-center justify-content-start mb-0">
+          <div class="custom_check_login" style="display:none;">
+            <input type="checkbox" data-role="none">
+            <span></span> </div>
+          <p style="display:none;">Remember Me</p>
+          </label>
+          <div class="d-inline-flex align-items-center justify-content-start"> <a href="#page-forgot-password" class="forgot_link">Forgot Password?</a> </div>
+        </div>
+        <div class="form-group mt-20"> <a href="javascript:authenticate_dist();" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+	  
+      <!-- <div class="text-center mt-20">Don't have account? <a href="#page-forgot-password" class="login_opt">Register</a></div>
+	  <div class="text-center mt-20"><a href="#selectcategorypage" class="login_opt">Back</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_none" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>-->
+
+<div data-role="page" data-dom-cache="true" id="boothoperator_pg" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0 d-flex align-items-start login_content">
+    <div class="loginreg mt-50">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Welcome!</h1>
+        <div class="form-group">
+          <label class="form_label">Booth Code</label>
+          <div class="custom-input">
+            <input type="text" id="booth_code_input" name="booth_code_input" placeholder="Booth Code" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+        <label class="form_label">Select Shift Type</label>
+            <div class="statment_sel_block_inner mt-20">
+              <select name="am_pm" class="statement_select font_16" id="am_pm" data-role="none">
+                <option value="AM" id="am_pm_am">AM</option>
+                <option value="PM" id="am_pm_pm">PM</option>
+              </select>             
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="form-group mt-20"> <a href="javascript:submit_boothcode();" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+	  
+      <!-- <div class="text-center mt-20">Don't have account? <a href="#page-forgot-password" class="login_opt">Register</a></div> -->
+	  <div class="text-center mt-20"><a href="#selectcategorypage" class="login_opt">Back</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_none" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+<!--page-->
+
+<div data-role="page" data-dom-cache="true" id="dist_route_pg" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0 d-flex align-items-start login_content">
+    <div class="loginreg mt-50">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Welcome!</h1>
+        
+		<div class="form-group">
+          <label class="form_label">Booth Code</label>
+          <div class="custom-input">
+            <input type="text" id="dist_boothcode" name="dist_boothcode" placeholder="Booth Code" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+        <label class="form_label">Select Shift Type</label>
+            <div class="statment_sel_block_inner_none mt-20">
+              <select name="am_pm2" class="statement_select font_16" id="am_pm2" data-role="none">
+                <option value="AM" id="am_pm2_am">AM</option>
+                <option value="PM" id="am_pm2_pm">PM</option>
+              </select>             
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="form-group">
+        <label class="form_label">Route Code</label>
+            <div class="statment_sel_block_inner mt-20">
+              <select name="dist_routecode" class="statement_select font_16" id="dist_routecode" data-role="none">
+      
+              </select>             
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="form-group mt-20"> <a href="#" id="submit_storecode_route_btn" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+	  
+      
+	  <div class="text-center mt-20"><a href="#login_pg" class="login_opt">Back</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_none" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="profilepage" class="login_bg">
+  <div data-role="content" class="ui-content d-flex align-items-center">
+    <div class="loginreg mt-0 pt-0">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Get Started!</h1>
+        <div class="form-group">
+          <label class="form_label">First Name</label>
+          <div class="custom-input">
+            <input type="text" id="update_firstname" placeholder="First Name*" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<div class="form-group">
+          <label class="form_label">Last Name</label>
+          <div class="custom-input">
+            <input type="text" id="update_lastname" placeholder="Last Name" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <div class="form-group">
+          <label class="form_label">Email ID</label>
+          <div class="custom-input">
+            <input type="email" id="update_email" placeholder="Email ID*" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div>
+        <!--<div class="form-group">
+          <label class="form_label">Password</label>
+          <div class="custom-input">
+            <input type="password"  placeholder="Password" id="reg_pass" class="form-input" data-role="none"  />
+            <label class="show_pass_btn">
+              <input type="checkbox" onclick="showpass()" data-role="none" >
+              <span></span> </label>
+          </div>
+          <div class="clear"></div>
+        </div>-->
+        <!--<div class="form-group">
+          <label class="form_label">Pincode</label>
+          <div class="custom-input">
+            <input type="number" id="update_pincode" placeholder="Pincode" class="form-input" data-role="none"  maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+          </div>
+          <div class="clear"></div>
+        </div>-->
+        <div class="form-group" style="display:none;">
+          <label class="form_label">City</label>
+          <div class="custom-input">
+            <input type="text" id="update_city" placeholder="City" class="form-input" data-role="none" />
+          </div>
+          <div class="clear"></div>
+        </div><br>
+        <div class="form-group mt-20"> <a href="javascript:updateProfile();" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <!-- <div class="text-center mt-20">Already have account? <a href="#login_pg" class="login_opt">Login</a></div> -->
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_white" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+<!--page-->
+
+
+<div data-role="page" data-dom-cache="true" id="page-forgot-password" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0 d-flex align-items-start login_content">
+    <div class="loginreg mt-50">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h1 class="login_heading">Get Started!</h1>
+        <div class="form-group">
+          <label class="form_label">Mobile Number</label>
+          <div class="custom-input">
+            <input type="tel" id="forgot_mobile" name="forgot_mobile" placeholder="Mobile Number" class="form-input" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+          </div>
+          <div class="clear"></div>
+        </div>
+		<!--<div class="form-group">
+          <label class="form_label">Password</label>
+          <div class="custom-input">
+            <input type="password" id="forgot_pass" placeholder="Password" class="form-input" data-role="none" />
+			<label class="show_pass_btn">
+              <input type="checkbox" onclick="javascript:showpass1('forgot_pass');" data-role="none" >
+              <span></span> </label>
+          </div>
+          <div class="clear"></div>
+        </div>-->
+        
+        <div class="form-group mt-20"> 
+		  <a href="javascript:existingUser_check();" class="btn btn_primary">Submit</a>
+		  <!--<a href="javascript:forget_pswd();" class="btn btn_primary">Submit</a>-->
+		  <!-- <a href="javascript:setnew_pswd();" class="btn btn_primary">Submit</a> -->
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="text-center mt-20">Already have account? <a href="#login_pg" class="login_opt">Login</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_none" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+<!--page-->
+<div data-role="page" data-dom-cache="true" id="otp_pg" class="login_bg full_height">
+  <div data-role="content" class="ui-content pt-0  d-flex align-items-start login_content">
+    <div class="loginreg mt-80">
+      <div class="loginreg_inner">
+        <div class="login_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+        <h2 class="login_heading">Please enter OTP sent to your registered mobile number</h2>
+        <div class="form-group mt-20 mt-40">
+          <div class="ui-grid_custom">
+            <input type="password" data-role="none" placeholder="Code" id="password_myacc2" style="display:none;border-bottom: 0" />
+            <div class="ui-block-a padding0_10px">
+              <input id="codeBox1" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(1, event)" onfocus="onFocusEvent(1)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-b padding0_10px">
+              <input id="codeBox2" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(2, event)" onfocus="onFocusEvent(2)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-c padding0_10px">
+              <input id="codeBox3" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(3, event)" onfocus="onFocusEvent(3)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-d padding0_10px">
+              <input id="codeBox4" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(4, event)" onfocus="onFocusEvent(4)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-d padding0_10px">
+              <input id="codeBox5" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(5, event)" onfocus="onFocusEvent(5)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+            <div class="ui-block-d padding0_10px">
+              <input id="codeBox6" type="number" maxlength="1" class="otp_input" onkeyup="onKeyUpEvent(6, event)" onfocus="onFocusEvent(6)" data-role="none" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+            </div>
+          </div>
+          <!--<label class="input_label" style="margin-top: 20px">Enter 4 Digit Code</label>-->
+          <div class="clear"></div>
+        </div>
+        <div class="form-group mt-20"> <a href="#homepage" class="btn btn_primary">Submit</a>
+          <div class="clear"></div>
+        </div>
+      </div>
+      <div class="text-center mt-20"> <a href="#login_pg" class="login_opt">Resend OTP</a></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" class="footer_login border_none bg_white" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-center"> <img src="assets/images/powered_by.png" class="powered_logo" alt=""> </div>
+  </div>
+</div>
+
+<!--page--> 
+
+<!--page-->
+
+<div data-role="page" data-dom-cache="true" id="homepage" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false" data-hide-during-focus="false">
+    <div class="d-flex align-items-center justify-content-between main_header bg_white bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#sidebar" class="sidemenu_btn" data-role="none"> <img src="assets/images/menu_icon.png" class="img-responsive" alt=""> </a>
+        <div class="header_logo"> <img src="assets/images/logo.png" class="img-responsive" alt=""> </div>
+      </div>
+      <div class="header_right">
+        <div class="header_right_icons d-flex align-items-center"> 
+			<a href="#my_profile_none" class="user_profile">
+          		<div class="user_pic" id="home_user_pic">
+					<img src="assets/images/user_pic.png" class="img-responsive" alt="">
+				</div>
+          		<span id="profilenm">Guest</span>
+			</a>
+			<!--<a href="#notificationspg" class="notifiction_btn notification_active"><img src="assets/images/notification_icon.png" class="img-responsive" alt=""></a>-->
+			<!--<a href="#cart" class="cart_btn"><img src="assets/images/cart.png" class="img-responsive" alt=""></a>-->
+		  </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start inner_content">
+    <div class="out_wrapper">
+      <div class="inner_wrapper">
+        <!--<div class="notification_stacks">
+          <div class="primary_block noti_trans">
+            <div class="noti_btn close_btn">+</div>
+            <div class="notification_block p-3">
+              <p class="font_500">Vijaya Dairy provides you the best milk products</p>
+              <a href="#notificationspg" class="primary_link mt-2">Explore More</a> </div>
+          </div>
+          <div class="primary_block noti_trans">
+            <div class="noti_btn close_btn">+</div>
+            <div class="notification_block p-3">
+              <p class="font_500">Vijaya Dairy provides you the best milk products</p>
+              <a href="#" class="primary_link mt-2">Explore More</a> </div>
+          </div>
+        </div>-->
+        <div class="primary_block mb-20 p-0">
+          <h3 class="block_title">My Membership</h3>
+          <div class="thumb_group flex-wrap"> <a class="thumb" href="#" onclick="javascript:gotomembership();">
+            <div class="thumb_icon"> <img src="assets/images/my_membership.png" alt=""> </div>
+            <p>Membership Card</p>
+            </a> <a class="thumb" href="#" onclick="javascript:gotomessages();">
+            <div class="thumb_icon"> <img src="assets/images/messages.png" alt=""> </div>
+            <p>Messages</p>
+            </a> <a class="thumb" href="#" onclick="javascript:gotopoints();">
+            <div class="thumb_icon"> <img src="assets/images/points.png" alt=""> </div>
+            <p>Points</p>
+            </a> 
+			  <a class="thumb" href="#" onclick="javascript:gotorewards();">
+				<div class="thumb_icon"> <img src="assets/images/coupons.png" alt=""> </div>
+				<p>Coupons</p>
+              </a> 
+			  <!--<a class="thumb" href="#transactions" >
+				<div class="thumb_icon"> <img src="assets/images/transaction.png" alt=""> </div>
+				<p>Transaction</p>
+              </a>-->
+			  <a class="thumb" href="javascript:showPreviousOrders();" >
+				<div class="thumb_icon"> <img src="assets/images/transaction.png" alt=""> </div>
+				<p>Orders</p>
+              </a>
+			  <a class="thumb" href="#profilepage" >
+				<div class="thumb_icon"> <img src="assets/images/edit_profile.png" alt=""> </div>
+				<p>Edit Profile</p>
+              </a>  
+			  <a class="thumb" href="#ordernowpg" >
+				<div class="thumb_icon"> <img src="assets/images/statement.png" alt=""> </div>
+				<p>Order Now</p>
+              </a>  
+			  <a class="thumb" href="#feedback" >
+				<div class="thumb_icon"> <img src="assets/images/feedback.png" alt=""> </div>
+				<p>Feedback</p>
+              </a> 
+			</div>
+        </div>
+		  <!--<div class="primary_block mb-20">
+          <h3 class="block_title">Rewards Store</h3>
+          <div class="thumb_group">
+			  <a class="thumb" href="#pointPage">
+				<div class="thumb_icon"> <img src="assets/images/points.png" alt=""> </div>
+				<p>Redeem Points</p>
+            </a> 
+			  <a class="thumb" href="#rewardPage">
+				<div class="thumb_icon"> <img src="assets/images/brand_voucher.png" alt=""> </div>
+				<p>Brand Vouchers</p>
+              </a>
+			</div>
+       		</div>-->        
+        <div class="primary_block mb-20 border_none promo_slider owl-carousel owl-theme p-0">
+			<img src="assets/images/banner1.png" class="img-responsive" alt="">
+			<img src="assets/images/banner-2.png" class="img-responsive" alt="">
+			<img src="assets/images/banner3.png" class="img-responsive" alt="">
+		  </div>
+        
+        <div class="primary_block mb-20 p-0">
+          <h3 class="block_title">Product List</h3>
+          <div class="thumb_group flex-wrap" id="product_cat_homepage">
+			  <!--<a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/milk.png" alt=""> </div>
+				<p>Milk</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/Flavored_milk.png" alt=""> </div>
+				<p>Flavored Milk</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/ghee.png" alt=""> </div>
+				<p>Ghee</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/chhachh.png" alt=""> </div>
+				<p>Chhachh</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/khoya.png" alt=""> </div>
+				<p>Khoya</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/butter.png" alt=""> </div>
+				<p>Butter</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/dahi_bucket.png" alt=""> </div>
+				<p>Dahi Bucket</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/dahi.png" alt=""> </div>
+				<p>Dahi</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/lassi.png" alt=""> </div>
+				<p>Lassi</p>
+              </a>
+			  <a class="thumb" href="#products1">
+				<div class="thumb_icon"> <img src="assets/images/rabri.png" alt=""> </div>
+				<p>Rabri</p>
+              </a>
+			  <a class="thumb" href="javascript:showMainCategory();">
+				<div class="thumb_icon"> <img src="assets/images/barfi.png" alt=""> </div>
+				<p>Barfi</p>
+              </a>-->
+			</div>
+        </div>
+	 <!-- <div class="primary_block mb-20">
+          <h3 class="block_title">Announcement & Social</h3>
+          <div class="thumb_group"> <a class="thumb" href="#whatsnew">
+            <div class="thumb_icon"> <img src="assets/images/whats_new.png" alt=""> </div>
+            <p>What's New</p>
+            </a> <a class="thumb" href="#events">
+            <div class="thumb_icon"> <img src="assets/images/events.png" alt=""> </div>
+            <p>Events</p>
+            </a> <a class="thumb" href="#social">
+            <div class="thumb_icon"> <img src="assets/images/social_media.png" alt=""> </div>
+            <p>Social</p>
+            </a> </div>
+        </div>-->
+		   <div class="primary_block mb-20 border_none promo_slider2 owl-carousel owl-theme p-0">
+			<img src="assets/images/banner4.png" class="img-responsive" alt="">
+			<img src="assets/images/banner5.png" class="img-responsive" alt="">
+		  </div>
+        <div class="primary_block mb-20 p-0">
+          <h3 class="block_title">Help & Support</h3>
+          <div class="thumb_group">
+			  <a class="thumb" href="#contactus">
+				<div class="thumb_icon"> <img src="assets/images/contact_us.png" alt=""> </div>
+				<p>Contact us</p>
+			  </a>
+			  <a class="thumb" href="#faqs">
+				<div class="thumb_icon"> <img src="assets/images/faqs.png" alt=""> </div>
+				<p>FAQs</p>
+            </a>
+			  <!--<a class="thumb" href="#howto">
+				<div class="thumb_icon"> <img src="assets/images/how_to.png" alt=""> </div>
+				<p>How To</p>
+            </a>
+			  <a class="thumb" href="#chatbot">
+				<div class="thumb_icon"> <img src="assets/images/chat_bot.png" alt=""> </div>
+				<p>Chat Bot</p>
+				</a>-->
+			</div>
+        </div>        
+        <div class="d-flex align-items-center justify-content-center p-2">
+			<a href="#ordernowpg" class="scan_btn" data-role="none">
+			  <h4>Order Now</h4>
+			</a>
+		 </div>
+      </div>
+    </div>
+    <div id="filter_panel" class="filter_panel">
+      <div id="filter_transaction_div">
+        <div class="noti_option"> <a class="mb-0 primary_link text-center p-3 close_panel" style="width: 100%">Remove this notification for now </a> </div>
+        <div class="noti_option"> <a href="#" class="filter_close p-3" id="filterClose">Cancel</a> </div>
+      </div>
+    </div>
+    <div class="overlay"></div>
+  </div>
+  <div data-role="panel" id="sidebar" data-display="overlay" data-overlay-theme="a">
+    <div class="sidemenu_header">
+      <a href="#my_profile_none" class="profile_header_inner">
+        <div class="">
+          <div class="profile_pic profile_pic_sidemenu">
+			 <img src="assets/images/user_pic.png" id="cardImagemenu_tl" onclick="javascript:uploadFromGallery();" class="img-responsive" alt="" onerror="this.src='assets/images/user_pic.png';" />
+			</div>
+          <div class="profile_content">
+            <h3 id="profilenm1" class="user_name">Guest</h3>
+            <!-- <p class="user_id font_sm">Gold Member</p> -->
+            <p class="user_id font_sm">Points: <span class="text-white" id="profilepts1">0</span> </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div class="side_navs">
+      <ul>
+        <li> <a href="#homepage"> <span>Home</span> </a> </li>
+        <li class="has_sub">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span>My Membership</span> </a>
+			<ul class="sub_menu">
+				<li><a href="#" onclick="javascript:gotomembership();">Membership</a></li>
+				<li><a href="#" onclick="javascript:gotomessages();">Message</a></li>
+				<li><a href="#" onclick="javascript:gotopoints();">Points</a></li>
+				<li><a href="#" onclick="javascript:gotorewards();">Coupons</a></li>
+				<li><a href="javascript:showPreviousOrders();">Orders</a> </li>
+			  	<li><a href="#profilepage" >Edit Profile</a></li>  
+			  	<li><a href="#ordernowpg" >Order Now</a></li>  
+			  	<li><a href="#feedback" >Feedback</a></li> 
+			</ul>
+		</li>
+        <!--<li class="has_sub">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span>Reward Store</span> </a>
+			<ul class="sub_menu">
+				<li><a href="#pointPage">Redeem Points</a></li>
+				<li><a href="#rewardPage">Brand Voucher</a></li>
+			</ul>
+		</li>-->
+        <li class="has_sub">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span>Product List</span> </a>
+			<ul class="sub_menu" id="product_cat_homepage_sidebar">
+				<!--<li> <a href="#products1">Milk</a></li>
+				<li> <a href="#products1">Flavored Milk </a></li>
+				<li> <a href="#products1">Ghee</a></li>
+				<li> <a href="#products1">Chhachh</a></li>
+				<li> <a href="#products1">Khoya</a></li>
+				<li> <a href="#products1">Butter</a></li>
+				<li> <a href="#products1">Dahi Bucket</a></li>
+				<li> <a href="#products1">Dahi</a></li>
+				<li> <a href="#products1">Lassi</a></li>
+				<li> <a href="#products1">Rabri</a></li>
+				<li> <a href="#products1">Barfi</a></li>-->
+			</ul>
+		</li>
+        <li class="has_sub">
+			<a href="#" onClick="javascript:toggleDD(this)"> <span>Help and Support</span> </a>
+			<ul class="sub_menu">
+				<li><a href="#contactus">Contact us</a></li>
+				<li><a href="#faqs">FAQs</a></li>
+			</ul>
+		</li>
+        <li> <a href="javascript:logoutApp();"> <span>Logout</span> </a> </li>
+      </ul>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer bg_none border_none" data-hide-during-focus="true">
+    <div class="footer_lines w-100"></div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="boothhomepage" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bg_white bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Details</h3>
+      </div>
+      <!--<div class="header_right">
+			<div class="header_right_icons">
+				 <a href="javascript:showNotifications();" class="header_icons notification_active"><img src="assets/images/notification_icon.png" class="img-responsive" alt=""></a> 
+			</div>
+		</div>--> 
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start inner_content1 br_t_20 bg_white">
+     <div id="boothdiv"></div>
+  </div>
+
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#selectcategorypage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="qrpage" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bg_white bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">QR Code</h3>
+      </div>
+      <!--<div class="header_right">
+			<div class="header_right_icons">
+				 <a href="javascript:showNotifications();" class="header_icons notification_active"><img src="assets/images/notification_icon.png" class="img-responsive" alt=""></a> 
+			</div>
+		</div>--> 
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start inner_content1 br_t_20 bg_white">
+     <div id="qrdiv" style="display: block;text-align: center;margin: 20px auto;"></div>
+  </div>
+
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#selectcategorypage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--page-->
+	
+ <div data-role="page" data-dom-cache="true" id="feedback" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bg_white bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Feedback</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start inner_content1 br_t_20 bg_white">
+    <div class="out_wrapper">
+      <div class="inner_wrapper">
+			<div class="questionSection">
+				<p class="main_q">Please share your shopping experience with us. </p>	 
+				<div class="level1">
+					<div class="conv">
+					  <p class="question">HOW MUCH YOU SATISFIED OUR SERVICE</p>
+					  <div class="answers">
+						<div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" name="service" value="0" data-role="none">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" name="service" value="1" data-role="none">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" name="service" value="2" data-role="none">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" name="service" value="3" data-role="none">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="service" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					  </div>
+					</div>
+				</div>
+				<div class="level1">
+					<div class="conv">
+					  <p class="question">HOW MUCH YOU SATISFIED OUR PRODUCT</p>
+					  <div class="answers">
+						<div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="product" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					  </div>
+					</div>
+					<div class="level2" style="display: none;" >				  				  
+					  <div class="conv">
+						<p class="question subq">Product Quality</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_quality" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>
+					  <div class="conv">
+						<p class="question subq">Value for money prices</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="value_for_money" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>
+					  <div class="conv">
+						<p class="question subq">Availability of Sizes</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="available_size" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>
+					  <div class="conv">
+						<p class="question subq">Collection/Range</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="collection_range" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>	
+					</div>
+				</div>
+				<div class="level1">
+					<div class="conv">
+					  <p class="question">HOW MUCH YOU SATISFIED OUR OFFERS</p>
+					  <div class="answers">
+						<div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="offers" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="offers" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					  </div>
+					</div>
+					<div class="level2" style="display: none;" >				  				  
+					  <div class="conv">
+						<p class="question subq">Offers/Promotion attractive enough</p>
+						<div class="answers">
+						  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="attractive_enough" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+						</div>
+					  </div>
+					</div>
+				</div>
+			  	<div class="level1">
+				<div class="conv">
+				  <p class="question">HOW MUCH YOU RATE SATISFIED STORE ATMOSPHERE</p>
+				  <div class="answers">
+					<div class="rate_c">
+						<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_atmosphere" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+					</div>
+				  </div>
+				</div>
+			   <div class="level2" style="display: none;">              
+				  <div class="conv">
+					<p class="question subq">Ambience and Cleanliness</p>
+					<div class="answers">
+					  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="cleanliness" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				  </div>
+				  <div class="conv">
+					<p class="question subq">Store Lighting and A/C</p>
+					<div class="answers">
+					  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="2">
+									<span class="inactive third" store_acdata-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="store_ac" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				  </div>
+				  <div class="conv">
+					<p class="question subq">Product Arrangement</p>
+					<div class="answers">
+					  <div class="rate_c">
+							<div class="range_slider">
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="0">
+									<span class="inactive first" data-value="0"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="1">
+									<span class="inactive second" data-value="1"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="2">
+									<span class="inactive third" data-value="2"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="3">
+									<span class="inactive fourth" data-value="3"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="4">
+									<span class="inactive fifth" data-value="4"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="5">
+									<span class="inactive sixth" data-value="5"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="6">
+									<span class="inactive seventh" data-value="6"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="7">
+									<span class="inactive eighth" data-value="7"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="8">
+									<span class="inactive ninth" data-value="8"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="9">
+									<span class="inactive tenth" data-value="9"></span>
+								</label>
+								<label>
+									<input type="radio" data-role="none" name="product_arrangement" value="10">
+									<span class="inactive eleventh" data-value="10"></span>
+								</label>
+							</div>
+						</div>
+					</div>
+				  </div>              
+				</div>
+				</div>
+
+				<textarea id="feed_comments" placeholder="Comments"></textarea>
+			  </div>
+		  
+		  <div class="py-2">
+		  	<a href="javascript:submitFeedback_1();" class="btn btn_primary">Submit</a>
+		  </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="my_membership" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">My Membership</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span id="profilenm_mloyal">Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div data-role="tabs" id="contest_tabs" class="contest_tabs">
+      <div class="custom_tabs">
+        <ul>
+          <li onclick="javascript:gotomembership();"><a href="#membership">Membership</a></li>
+          <li onclick="javascript:gotomessages();"><a href="#message">Message</a></li>
+          <li onclick="javascript:gotopoints();"><a href="#points">Points</a></li>
+          <li onclick="javascript:gotorewards();"><a href="#rewards">Coupons</a></li>
+        </ul>
+      </div>
+      <div id="membership" class="ui-body-d ui-content">
+        <div class="card_section">
+          <div class="card_main">
+            <div class="card_content">
+              <div class="card_main_left">
+                <div class="card_qr" id="barimg"> <img src="assets/images/card_qr.png" class="img-responsive" alt=""> </div>
+                <h3 id="cardname">Guest</h3>
+                <p id="mType">Silver Member</p>
+				<p id="cardid"></p>
+              </div>
+              <div class="card_main_right"> <img src="assets/images/card_logo.png" class="card_logo" alt=""> </div>
+            </div>
+            <div class="card_footer">
+              <div class="card_footer_left">
+                <h3 class="card_points">Points : <span id="tpoint">0</span></h3>
+              </div>
+              <div class="card_footer_right">
+                <div class="card_powered_logo"><img src="assets/images/mloyal_paytm_logo.png" class="img-responsive" alt=""></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="thumb_group1">
+          <div class="m_circle" style="border-color:#c0c0c0"> <span id="silverslab" class="active">Silver</span> <a href="#mamber_plan2" data-rel="popup" data-position-to="window" data-transition="pop" class="info_icon admirer_info ui-link" aria-haspopup="true" aria-owns="mamber_plan2" aria-expanded="false">?</a> </div>
+          <div class="m_circle" style="border-color:#f7cd3d"> <span id="goldslab">Gold</span> <a href="#mamber_plan1" data-rel="popup" data-position-to="window" data-transition="pop" class="info_icon lover_info ui-link" aria-haspopup="true" aria-owns="mamber_plan1" aria-expanded="false"> ? </a> </div>
+          <div class="m_circle" style="border-color:#abcad0"> <span id="platinumslab">Platinum</span> <a href="#mamber_plan3" data-rel="popup" data-position-to="window" data-transition="pop" class="info_icon freak_info ui-link" aria-haspopup="true" aria-owns="mamber_plan3" aria-expanded="false"> ? </a> </div>
+          <div data-role="popup" id="mamber_plan1" data-theme="a" data-overlay-theme="b" class="ui-corner-all border_none">
+            <div class="membership_plan"><a href="#" data-rel="back" class="close_btn">+</a>
+              <h3>Gold Member</h3>
+              <p>With your cumulative transaction billing amount with us ranging from Rs.50001 to Rs.200000 you will become our Gold Member.</p>
+            </div>
+          </div>
+          <div data-role="popup" id="mamber_plan2" data-theme="a" data-overlay-theme="b" class="ui-corner-all border_none">
+            <div class="membership_plan"><a href="#" data-rel="back" class="close_btn">+</a>
+              <h3>Silver Member</h3>
+              <p>With your cumulative bill ranging from Rs.0 to Rs.50000 you will be our valuable Silver Member.</p>
+            </div>
+          </div>
+          <div data-role="popup" id="mamber_plan3" data-theme="a" data-overlay-theme="b" class="ui-corner-all border_none">
+            <div class="membership_plan"><a href="#" data-rel="back" class="close_btn">+</a>
+              <h3>Platinum Member</h3>
+              <p>With your cumulative transaction billing amount going above Rs.200001 you will become our Platinum Member.</p>
+            </div>
+          </div>
+          <!--<div data-role="popup" id="mamber_plan4" data-theme="a" data-overlay-theme="b" class="ui-corner-all">
+            <div class="membership_plan"><a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a>
+              <h3>Titanium Member</h3>
+              <p>With your cumulative billing transaction amount going above Rs.15000 you will become our Titanium Member and get 15% points of bill value.</p>
+            </div>
+          </div>-->
+        </div>
+      </div>
+      <div id="message" class="ui-body-d ui-content">
+			
+	  </div>
+      <div id="points" class="ui-body-d ui-content">
+
+	  </div>
+      <div id="rewards" class="ui-body-d ui-content">
+			
+	  </div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li class="active"><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--page-->	
+<div data-role="page" data-dom-cache="true" id="my_orders" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#homepage" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">My Orders</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 align-items-start bg_white">
+    <div id="orderlist"></div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!--page-->	
+<div data-role="page" data-dom-cache="true" id="contactus" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Contact us</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+
+	  
+	  <div class="px-4 py-3 abt_more">
+	  <h4 class="mb-2">Business Model:</h4>
+	  Sale of Milk & Milk Products through various Retailers.
+	  </div>
+
+	  <div class="px-4 py-3 abt_more">
+	  <h4 class="mb-2">Legal Name of the Company: </h4>
+	  The Krishna District Milk Producers Mutually Aided Co Op Union Ltd.
+	  </div>
+      
+      <div class="px-4 py-3 abt_more">
+        <div class="primary_block bg_grey p-3">
+          <h4 class="mb-2">Contact Us:</h4>
+		  <p>The Krishna District Milk Producers Mutually Aided Co Op Union Ltd.</p>
+          <p>Milk Products Factory</p>
+          <p>Chittinagar</p>
+          <p>Vijayawada-520001</p>
+		  <p>Telephone No. 0866-2518461 - 67</p>
+        </div>
+      </div>
+
+	  <div class="px-4 py-3 abt_more">
+	  <h4 class="mb-2">Privacy Policy: </h4>
+	  Krishna Milk Union is committed to protecting your privacy and developing technology that gives you the most powerful and safe online experience. This Statement of Privacy applies to the Krishna Milk Union site and governs data collection and usage. By using the Krishna Milk Union site, you consent to the data practices described in this statement.<br>
+
+Collection of your Personal Information<br>
+Krishna Milk Union collects personally identifiable information, such as your email address, name, home or work address or telephone number. Krishna Milk Union also collects anonymous demographic information, which is not unique to you, such as your ZIP code, age, gender, preferences, interests and favorites.
+There is also information about your computer hardware and software that is automatically collected by Krishna Milk Union. This information can include: your IP address, browser type, domain names, access times and referring website addresses. This information is used by Krishna Milk Union for the operation of the service, to maintain quality of the service, and to provide general statistics regarding use of the Krishna Milk Union site.<br>
+Please keep in mind that if you directly disclose personally identifiable information or personally sensitive data through Krishna Milk Union public message boards, this information may be collected and used by others. Note: Krishna Milk Union does not read any of your private online communications.<br>
+Krishna Milk Union encourages you to review the privacy statements of Web sites you choose to link to from Krishna Milk Union so that you can understand how those Web sites collect, use and share your information. Krishna Milk Union is not responsible for the privacy statements or other content on Web sites outside of the Krishna Milk Union and Krishna Milk Union family of Web sites.<br>
+Use of your Personal Information:<br>
+Krishna Milk Union collects and uses your personal information to operate the Krishna Milk Union Web site and deliver the services you have requested. Krishna Milk Union also uses your personally identifiable information to inform you of other products or services available from Krishna Milk Union and its affiliates. Krishna Milk Union may also contact you via surveys to conduct research about your opinion of current services or of potential new services that may be offered.
+Krishna Milk Union does not sell, rent or lease its customer lists to third parties. Krishna Milk Union may, from time to time, contact you on behalf of external business partners about a particular offering that may be of interest to you. In those cases, your unique personally identifiable information (e-mail, name, address, telephone number) is not transferred to the third party. In addition, Krishna Milk Union may share data with trusted partners to help us perform statistical analysis, send you email or postal mail, provide customer support, or arrange for deliveries. All such third parties are prohibited from using your personal information except to provide these services to Krishna Milk Union, and they are required to maintain the confidentiality of your information.
+Krishna Milk Union does not use or disclose sensitive personal information, such as race, religion, or political affiliations, without your explicit consent.
+Krishna Milk Union keeps track of the Web sites and pages our customers visit within Krishna Milk Union, in order to determine what Krishna Milk Union services are the most popular. This data is used to deliver customized content and advertising within Krishna Milk Union to customers whose behavior indicates that they are interested in a particular subject area.<br>
+Krishna Milk Union Web sites will disclose your personal information, without notice, only if required to do so by law or in the good faith belief that such action is necessary to: (a) conform to the edicts of the law or comply with legal process served on Krishna Milk Union or the site; (b) protect and defend the rights or property of Krishna Milk Union; and, (c) act under exigent circumstances to protect the personal safety of users of Krishna Milk Union, or the public.<br>
+Use of Cookies<br>
+The Krishna Milk Union Web site use "cookies" to help you personalize your online experience. A cookie is a text file that is placed on your hard disk by a Web page server. Cookies cannot be used to run programs or deliver viruses to your computer. Cookies are uniquely assigned to you, and can only be read by a web server in the domain that issued the cookie to you.<br>
+One of the primary purposes of cookies is to provide a convenience feature to save you time. The purpose of a cookie is to tell the Web server that you have returned to a specific page. For example, if you personalize Krishna Milk Union pages, or register with Krishna Milk Union site or services, a cookie helps Krishna Milk Union to recall your specific information on subsequent visits. This simplifies the process of recording your personal information, such as billing addresses, shipping addresses, and so on. When you return to the same Krishna Milk Union Web site, the information you previously provided can be retrieved, so you can easily use the Krishna Milk Union features that you customized.<br>
+You have the ability to accept or decline cookies. Most Web browsers automatically accept cookies, but you can usually modify your browser setting to decline cookies if you prefer. If you choose to decline cookies, you may not be able to fully experience the interactive features of the Krishna Milk Union services or Web sites you visit.<br>
+Security of your Personal Information<br>
+Krishna Milk Union secures your personal information from unauthorized access, use or disclosure. Krishna Milk Union secures the personally identifiable information you provide on computer servers in a controlled, secure environment, protected from unauthorized access, use or disclosure. When personal information (such as a credit card number) is transmitted to other Web sites, it is protected through the use of encryption, such as the Secure Socket Layer (SSL) protocol.
+	  </div>
+
+	  <div class="px-4 py-3 abt_more">
+	  <h4 class="mb-2">Terms & conditions: </h4>
+	  AGREEMENT BETWEEN USER AND Krishna Milk Union
+The Krishna Milk Union Web Site is comprised of various Web pages operated by Krishna Milk Union.<br>
+The Krishna Milk Union Web Site is offered to you conditioned on your acceptance without modification of the terms, conditions, and notices contained herein. Your use of the Krishna Milk Union Web Site constitutes your agreement to all such terms, conditions, and notices.<br>
+MODIFICATION OF THESE TERMS OF USE<br>
+Krishna Milk Union reserves the right to change the terms, conditions, and notices under which the Krishna Milk Union Web Site is offered, including but not limited to the charges associated with the use of the Krishna Milk Union Web Site.<br>
+LINKS TO THIRD PARTY SITES<br>
+The Krishna Milk Union Web Site may contain links to other Web Sites ("Linked Sites"). The Linked Sites are not under the control of Krishna Milk Union and Krishna Milk Union is not responsible for the contents of any Linked Site, including without limitation any link contained in a Linked Site, or any changes or updates to a Linked Site. Krishna Milk Union is not responsible for webcasting or any other form of transmission received from any Linked Site. Krishna Milk Union is providing these links to you only as a convenience, and the inclusion of any link does not imply endorsement by Krishna Milk Union of the site or any association with its operators.<br>
+NO UNLAWFUL OR PROHIBITED USE<br>
+As a condition of your use of the Krishna Milk Union Web Site, you warrant to Krishna Milk Union that you will not use the Krishna Milk Union Web Site for any purpose that is unlawful or prohibited by these terms, conditions, and notices. You may not use the Krishna Milk Union Web Site in any manner which could damage, disable, overburden, or impair the Krishna Milk Union Web Site or interfere with any other party's use and enjoyment of the Krishna Milk Union Web Site. You may not obtain or attempt to obtain any materials or information through any means not intentionally made available or provided for through the Krishna Milk Union Web Sites.<br>
+USE OF COMMUNICATION SERVICES<br>
+The Krishna Milk Union Web Site may contain bulletin board services, chat areas, news groups, forums, communities, personal web pages, calendars, and/or other message or communication facilities designed to enable you to communicate with the public at large or with a group (collectively, "Communication Services"), you agree to use the Communication Services only to post, send and receive messages and material that are proper and related to the particular Communication Service. By way of example, and not as a limitation, you agree that when using a Communication Service, you will not:
+Defame, abuse, harass, stalk, threaten or otherwise violate the legal rights (such as rights of privacy and publicity) of others.<br>
+Publish, post, upload, distribute or disseminate any inappropriate, profane, defamatory, infringing, obscene, indecent or unlawful topic, name, material or information.<br>
+Upload files that contain software or other material protected by intellectual property laws (or by rights of privacy of publicity) unless you own or control the rights thereto or have received all necessary consents.<br>
+Upload files that contain viruses, corrupted files, or any other similar software or programs that may damage the operation of another's computer.
+Advertise or offer to sell or buy any goods or services for any business purpose, unless such Communication Service specifically allows such messages.
+Conduct or forward surveys, contests, pyramid schemes or chain letters.<br>
+Download any file posted by another user of a Communication Service that you know, or reasonably should know, cannot be legally distributed in such manner.
+Falsify or delete any author attributions, legal or other proper notices or proprietary designations or labels of the origin or source of software or other material contained in a file that is uploaded.<br>
+Restrict or inhibit any other user from using and enjoying the Communication Services.<br>
+Violate any code of conduct or other guidelines which may be applicable for any particular Communication Service.<br>
+Harvest or otherwise collect information about others, including e-mail addresses, without their consent.<br>
+Violate any applicable laws or regulations.<br>
+Krishna Milk Union has no obligation to monitor the Communication Services. However, Krishna Milk Union reserves the right to review materials posted to a Communication Service and to remove any materials in its sole discretion. Krishna Milk Union reserves the right to terminate your access to any or all of the Communication Services at any time without notice for any reason whatsoever.<br>
+Krishna Milk Union reserves the right at all times to disclose any information as necessary to satisfy any applicable law, regulation, legal process or governmental request, or to edit, refuse to post or to remove any information or materials, in whole or in part, in Krishna Milk Union's sole discretion.
+Always use caution when giving out any personally identifying information about yourself or your children in any Communication Service. Krishna Milk Union does not control or endorse the content, messages or information found in any Communication Service and, therefore, Krishna Milk Union specifically disclaims any liability with regard to the Communication Services and any actions resulting from your participation in any Communication Service. Managers and hosts are not authorized Krishna Milk Union spokespersons, and their views do not necessarily reflect those of Krishna Milk Union.<br>
+
+	  </div>
+
+	  <div class="px-4 py-3 abt_more">
+	  <h4 class="mb-2">Refund and Cancellations:</h4>
+	  1. All Failed or Cancelled transactions will be refund as per RBI Guidelines and Timelines Provided.<br>
+	  2. The Refund of monies may depend on Mode of Payment used at the time of payment such as Cards, Net Banking, Upi Payments Etc.<br>
+      3. Some Transactions are directly refunded by the Sender Bank only.<br>
+      4. If any further disputes or complaints all will be resolved as per RBI guidelines.<br>
+	  </div>
+
+	  <div class="px-4 py-3 abt_more">
+	  <h4 class="mb-2">About Us.</h4>
+	  Krishna Milk Union (Vijaya Dairy) is one of  leading Milk Dairy in Andhra Pradesh which was formed and Established 50 years back by a group of Milk Societies In Krishna District, Andhra Pradesh. The Dairy Plant is located in Vijayawada City.
+	  </div>
+
+    </div>
+
+  </div>
+  
+</div>
+<!--page-->
+
+<div data-role="page" data-dom-cache="true" id="my_profile" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">My Profile</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+		<div class="align-items-center justify-content-center d-flex p-3">
+			<a href="#" class="user_profile" style="font-size: 24px">
+			  	<div class="user_pic" style="width: 130px; height: 130px">
+				  <img src="assets/images/user_pic.jpg" class="img-responsive" alt="">
+				</div>
+			  	<span>Rohan Verma</span>
+			</a>
+		</div>
+      	<div class="my_account">
+			<ul class="my_account_inner">
+				<li><a href="#transactions">My Transactions</a></li>
+				<li><a href="#page-forgot-password">Edit Profile</a></li>
+				<li><a href="#login_pg">Log Out</a></li>
+			</ul>
+		</div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#"><img src="assets/images/footer_scheme.png" alt=""><span>Schemes</span></a></li>
+        <li><a href="#"><img src="assets/images/footer_tool.png" alt=""><span>Tools</span></a></li>
+        <li class="active"><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--page-->
+
+<div data-role="page" data-dom-cache="true" id="transactions" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Transactions</h3>
+      </div>
+      <div class="header_right">
+        <div class="header_right_icons"> <a href="#" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.png" class="img-responsive" alt=""> </div>
+          <span id="trans_nm">Guest</span> </a> </div>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+      <div class="out_wrapper">
+			<div class="inner_wrapper bg-white p-0">				
+				<a href="#" class="points_bal_header">
+					<div class="d-flex align-items-center justify-content-between pl-4 pr-4">
+						<h4><span id="pointbal_head">Point Balance</span></h4>
+						<h2 class="bal_point"><span id="trans_pts">0</span></h2>
+					</div>
+				</a>
+				<div class="bb1 py-3">
+					<div class="statement_link">
+						<a href="#requestStatement" class="points_bal_btn">
+							<div class="pl-4 pr-4 w-100">
+								<div class="points_bal d-flex align-items-center">
+									<img src="assets/images/request_statement_icon.png" alt="">
+									<h4>Request Statement</h4>
+								</div>								
+							</div>								
+						</a>
+					</div>				
+					<!--<div class="statement_link" id="suspense_acc1">
+						<a href="#unclearTransations" class="points_bal_btn">
+							<div class="pl-4 pr-4 w-100">
+								<div class="points_bal d-flex align-items-center">
+									<img src="assets/images/rupess_icon.png" alt="">
+									<h4>Unclear Transactions</h4> 
+								</div>
+							</div>
+						</a>
+					</div>-->
+				</div>
+				<div class="recent_header">
+					<div class="pl-4 pr-4 d-flex align-items-center justify-content-between">
+						<h3 class="transfer_heading">Transaction History</h3>
+						<!-- <div class="filter_nav">
+							<a href="#" id="toggleFilter1" > <img src="assets/images/filter_icon.png" class="img-responsive" alt="" /> </a>
+						</div> -->
+					</div>
+				</div>
+			</div>	
+				
+			<div id="transfers">				
+				<div id="transfersret"></div>
+		  		<!--<div class="recent_transfer">
+					<div class="recent_transfer_header pl-4 pr-4">October 2021</div>
+					<div class="recent_block pl-4 pr-4">
+						<div class="recent_user_icon"> <img src="assets/images/pointredeem.png" class="img-responsive" alt=""/> </div>
+						<div class="recent_user_details">						
+							<p class="recent_detail_text ">Points Revoked from Vijaya Dairy Industries</p>
+							<p class="recent_date">20/10/2021 10:21 AM</p>
+						</div>
+						<div class="recent_user_points"><h2 class="text_green">+200<span>Points</span></h2></div>						
+					</div>
+					<div class="recent_block pl-4 pr-4">
+						<div class="recent_user_icon"> <img src="assets/images/pointredused.png" class="img-responsive" alt=""/> </div>
+						<div class="recent_user_details">						
+							<p class="recent_detail_text ">Points Redeemed from Vijaya Dairy Industries</p>
+							<p class="recent_date">20/10/2021 10:21 AM</p>
+						</div>
+						<div class="recent_user_points"><h2 class="text_red">-100<span>Points</span></h2></div>						
+					</div>
+				</div>
+		  		<div class="recent_transfer">
+					<div class="recent_transfer_header pl-4 pr-4">September 2021</div>
+					<div class="recent_block pl-4 pr-4">
+						<div class="recent_user_icon"> <img src="assets/images/pointredeem.png" class="img-responsive" alt=""/> </div>
+						<div class="recent_user_details">						
+							<p class="recent_detail_text ">Points Revoked from Vijaya Dairy Industries</p>
+							<p class="recent_date">20/09/2021 10:21 AM</p>
+						</div>
+						<div class="recent_user_points"><h2 class="text_green">+200<span>Points</span></h2></div>						
+					</div>
+					<div class="recent_block pl-4 pr-4">
+						<div class="recent_user_icon"> <img src="assets/images/pointredused.png" class="img-responsive" alt=""/> </div>
+						<div class="recent_user_details">						
+							<p class="recent_detail_text">Points Redeemed from Vijaya Dairy Industries</p>
+							<p class="recent_date">20/09/2021 10:21 AM</p>
+						</div>
+						<div class="recent_user_points"><h2 class="text_red">-100<span>Points</span></h2></div>						
+					</div>
+				</div>-->
+		  </div>
+		</div>
+      <div id="filter_panel1" class="filter_panel1 bg_white">
+        <div class="">
+          <div class="ui-grid-a">
+            <div class="ui-block-a">
+              <h3>Filter Transactions</h3>
+            </div>
+            <div class="ui-block-b text-right"> <a href="#" class="filter_close1" id="filterClose1">+</a> </div>
+          </div>
+          <div class="padding0_10px">
+            <label class="mb-0 custom_check">
+              <input type="radio" name="filter_transaction" id="filter_all" data-role="none" value="All" data-cacheval="false" />
+              <span class="custom_radio"></span> All </label>
+          </div>
+          <div class="padding0_10px">
+            <label class="mb-0 custom_check">
+              <input type="radio" name="filter_transaction" id="filter_recieved" data-role="none" value="Gift" data-cacheval="false" />
+              <span class="custom_radio"></span> Received </label>
+          </div>
+          <div class="padding0_10px">
+            <label class="mb-0 custom_check">
+              <input type="radio" name="filter_transaction" id="filter_redeemed" data-role="none" value="Redeem" data-cacheval="false" />
+              <span class="custom_radio"></span> Redeemed </label>
+          </div>
+          <div class="padding0_10px">
+            <label class="mb-0 custom_check">
+              <input type="radio" name="filter_transaction" id="filter_revoked" data-role="none" value="Revoke" data-cacheval="false" />
+              <span class="custom_radio"></span> Revoked </label>
+          </div>
+        </div>
+      </div>
+	  <div class="overlay"></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--page--> 
+
+<div data-role="page" data-dom-cache="true" id="requestStatement" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Request Statement</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+      <div class="out_wrapper">
+			<div class="inner_wrapper bg-white mt-20">
+				<div class="ui-grid-solo" id="retchoice_emailstats_div">
+					<div class="statment_sel_block">
+						<label>Select Transaction Type</label>
+						<div class="statment_sel_block_inner mt-20">
+							<select name="retchoice_emailstats" class="statement_select font_16" id="retchoice_emailstats" data-role="none">
+								<option value="purchase" id="retchoice_emailstats_purchase">My Purchase</option>
+								<option value="sale" id="retchoice_emailstats_sale">My Sale</option>
+							</select>							
+						</div>
+					</div>
+				</div>
+				<div class="statment_sel_block">
+					<div class="statment_sel_block_inner">
+						<label class="statement_select mb-0" id="toggleFilter2">Select Time Period</label>
+					</div>
+				</div>
+				
+				<div class="mt-20">
+					<a href="#" class="btn btn_primary">Proceed</a>
+				</div>
+				<div class="filter_panel1" id="filter_panel2" style="display: none">
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<h3>Select Time Period</h3>
+						</div>
+						<div class="ui-block-b text-right"> <a href="#" class="filter_close1" id="filterClose2">+</a> </div>
+					</div>
+					<div name="filter_transaction2_div" id="filter_transaction2_div">						
+						<div name="estmt" id="estmt">
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+								<input type="radio" name="input_email_statement" id="radio-1-month" data-role="none" value="last1month" data-cacheval="false" checked/> <span class="custom_radio"></span> Last 1 Month 
+								</label>
+							</div>
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+									<input type="radio" name="input_email_statement" id="radio-3-month" data-role="none" value="last3months" data-cacheval="false" /> <span class="custom_radio"></span> Last 3 Months </label>
+							</div>
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+									<input type="radio" name="input_email_statement" id="radio-6-month" data-role="none" value="last6months" data-cacheval="false" /> <span class="custom_radio"></span> Last 6 Months </label>
+							</div>
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+									<input type="radio" name="input_email_statement" id="radio-1-year" data-role="none" value="last1year" data-cacheval="false" /> <span class="custom_radio"></span> Last 1 Year </label>
+							</div>
+							<div class="padding0_10px">
+								<label class="mb-0 custom_check">
+									<input type="radio" name="input_email_statement" id="radio-sel" data-role="none" value="selectduration" data-cacheval="false" /> <span class="custom_radio"></span> Custom Date </label>
+							</div>
+							<div class="clear mt-10"></div>
+							<div class="date_select" id="dateduration" style="display:none">
+								<div class="ui-grid-a">
+									<div class="ui-block-a padding0_5px">
+										<label class=" mb-0">From Date</label>
+										<input type="date" class="date_input" data-role="none" placeholder="From Date" id="durationfrom" /> </div>
+									<div class="ui-block-b padding0_5px">
+										<label class=" mb-0">To Date</label>
+										<input type="date" class="date_input" data-role="none" placeholder="To Date" id="durationto" /> </div>
+								</div>
+							</div>
+							<a href="javascript:sendemailstatement();" class="btn btn_primary mt-10">Proceed</a>
+						</div>
+					</div>						
+				</div>
+				<div class="overlay"></div>
+			</div>	
+		</div>      
+	  <div class="overlay"></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+<!--page--> 
+
+
+<div data-role="page" data-dom-cache="true" id="unclearTransations" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Unclear Transactions</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+      <div class="out_wrapper">
+			<div class="inner_wrapper bg-white p-0">
+				<div class="unclear_transactions">
+					
+					<p class="recent_transfer_header pl-4 pr-4">October 2021</p>
+					<div class="unclear_transaction_inner  pl-4 pr-4">
+						<p class="recent_detail_text">Txn No: 87873899</p>
+						<p class="recent_detail_text">Sale of Rs.2000 By  9876543102<br/></p>
+					</div>
+
+					</div>
+			</div>	
+		</div>      
+	  <div class="overlay"></div>
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+	
+<div data-role="page" data-dom-cache="true" id="pointPage" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Redeem Points</h3>
+      </div>
+    </div>
+	  <div class="bg-grey p-3">
+	  <p class="text-center font_500">Enter your UPI ID or Paytm Wallet Number</p>
+	  </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100 pt-30">
+      <div class="out_wrapper pt-4 px-4">
+			<div class="inner_wrapper bg-white pb-0">
+				<div class="form-group points_form py-3">
+					<label>UPI ID / Paytm Wallet Number</label>
+					<input type="text" id="kyc_paytm_id" placeholder="UPI ID / Paytm Wallet Number" data-role="none" />
+				</div>
+				<div class="form-group points_form py-3">
+					<label>Points</label>
+					<input type="number" id="kyc_paytm_amount" placeholder="Points" data-role="none" />
+				</div>
+				<!--<div class="or_text mb-20">OR</div>
+				<div class="form-group points_form py-3">
+					<label>PAYTM NUMBER</label>
+					<input type="tel" id="kyc_paytm_no" placeholder="PAYTM NUMBER" data-role="none" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" />
+				</div>-->
+				<div class="py-2">
+					<a href="javascript:submitPaytm();" class="btn btn_primary">Submit</a>
+				</div>
+			</div>	
+		</div>   
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+	
+<div data-role="page" data-dom-cache="true" id="faqs" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">FAQs</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100">
+      <div class="out_wrapper">
+		<div class="inner_wrapper bg-white p-0">
+			<div class="bg-grey p-3">
+				<h3 class="faq_heading">Frequently Asked Questions</h3>
+			</div>
+				<div class="faq_section">
+					<ul class="faqs">
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+						<li>
+							<a class="faq_head" onclick="slide_this(this)">
+								<h3 class="faq_title">Lorem ipsum dolor sit amet?</h3>
+								<div class="points_arrow"><img src="assets/images/arrow_green.png" class="img-responsive" alt=""></div>
+							</a>							
+							<div class="faq_text">
+								<p>Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old.</p>
+							</div>
+						</li>
+					</ul>
+				</div>
+		</div>	
+	</div>  
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="specials" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Whats New</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100" id="spec">
+      
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#"><img src="assets/images/footer_scheme.png" alt=""><span>Schemes</span></a></li>
+        <li><a href="#"><img src="assets/images/footer_tool.png" alt=""><span>Tools</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="scanpg" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Scan</h3>
+      </div>
+    </div>
+	  <div class="bg-grey p-3">
+	  <p class="text-center font_500">Enter your UPI ID or Paytm Wallet Number</p>
+	  </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="w-100 pt-30">
+      <div class="out_wrapper pt-4 px-4">
+			<div class="inner_wrapper bg-white pb-0">
+				<div class="form-group points_form py-3">
+					<label>UPI ID</label>
+					<input type="text" placeholder="UPI ID" data-role="none">
+				</div>
+
+				<input type="hidden" id="scan_code">
+				<div class="py-2">
+					<a href="#" class="btn btn_primary">Submit</a>
+				</div>
+			</div>	
+		</div>   
+    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="share" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Category List</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+    <div class="primary_section" style="margin: 0 auto;">
+			  	  <div class="primary_section_inner">
+				  		<div id="shopzone"></div>
+				  </div>
+			  </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#"><img src="assets/images/footer_scheme.png" alt=""><span>Schemes</span></a></li>
+        <li><a href="#"><img src="assets/images/footer_tool.png" alt=""><span>Tools</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+<div data-role="page" data-dom-cache="true" id="rewardPage" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Rewards</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content d-flex align-items-start bg_white">
+   		<div id="rewards_div" class="w-100"></div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="rewardPage1" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Rewards</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+   		<div data-role="tabs" id="rewardt_tabs" class="reward_tabs w-100 p-0">
+		  <div class="bg-grey px-3 d-flex align-items-center justify-content-between">
+			<ul class="d-flex align-items-center justify-content-center">
+			  <li><a href="#active" data-ajax="false">Active</a></li>
+			  <li><a href="#expired" data-ajax="false">Expired</a></li>
+			</ul>
+			  <!--<div class="filter_nav">
+			  		<a href="#" ><img src="assets/images/filter_icon.png" class="img-responsive" alt=""></a>
+			  </div>-->
+		  </div>
+		  <div id="active" class="ui-body-d ui-content">
+			<div class="reward_section d-flex align-items-start justify-content-between flex-wrap p-3">
+			  	<a class="reward_block" href="#reward_details">
+					<div class="reward_img"><img src="assets/images/dominos.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>Domino's 30% off upto Rs.200</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/pizza_hut.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>Pizza Hut upto Rs.200</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/coin_dcx.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>CoinDCX Rs.100 Off</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/dominos.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>Domino's 30% off upto Rs.200</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/pizza_hut.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>Pizza Hut upto Rs.200</p>
+					</div>
+				</a>
+			  	<a class="reward_block">
+					<div class="reward_img"><img src="assets/images/coin_dcx.png" class="img-responsive" alt=""></div>
+					<div class="reward_brief">
+						<p>CoinDCX Rs.100 Off</p>
+					</div>
+				</a>
+			  </div>
+		  </div>
+		  <div id="expired" class="ui-body-d ui-content">
+				<div class="reward_section d-flex align-items-start justify-content-between flex-wrap p-3">
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/dominos.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>Domino's 30% off upto Rs.200</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/pizza_hut.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>Pizza Hut upto Rs.200</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/coin_dcx.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>CoinDCX Rs.100 Off</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/dominos.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>Domino's 30% off upto Rs.200</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/pizza_hut.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>Pizza Hut upto Rs.200</p>
+						</div>
+					</div>
+					<div class="reward_block expired">
+						<div class="reward_img"><img src="assets/images/coin_dcx.png" class="img-responsive" alt=""></div>
+						<div class="reward_brief">
+							<p>CoinDCX Rs.100 Off</p>
+						</div>
+					</div>
+				  </div>
+		  </div>
+		</div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+<div data-role="page" data-dom-cache="true" id="reward_details" class="full_height bg_white">
+  <div data-role="header" class="inner_header bg_transparent" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+		  <h3 class="header_title" id="rw_header">Rewards</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+   		<div class="out_wrapper">
+	  		<div class="inner_wrapper p-0">
+				<!-- <img src="assets/images/Dominos_640x320_Banner.jpg" class="img-responsive" alt=""> -->
+				<div class="p-4">
+					<!--<div class="bb1 pt-2 pb-30">
+						<h2>Buy 1 Get 1 Free</h2>
+						<p>Voucher won for paying using paytm only on november 10, 2021. Voucher available in Vouchers and deal Section.</p>
+					</div>-->
+					<div class="bb1 py-2 mb-4">
+						<div class="d-flex align-items-center justify-content-start">
+							<img src="assets/images/date_icon.png" class="input_icons mr-2 mt-0" alt="">
+							<p id="rw_date">Valid Till :</p>
+						</div>
+					</div>
+					<div class="code_group pb-4 bb1">
+						<label class="font_sm">Code</label>
+						<div class="coupon-box d-flex align-items-center" id="rw_coupon-box">
+							<!-- <input type="text" data-role="none" class="coupon_code_input" value="PTNKIHI77399">
+							<button class="btn_coupon" data-role="none">Copy</button> -->
+						</div>
+					</div>
+					<!--<div class="py-4 bb1">
+						<h3 class="mb-20">How to Avail</h3>
+						<p class="mb-1">Click on the Redeem Now Button and select the items of your choice</p>
+						<p class="mb-1">Enter the coupon code at the time of checkout to avail the offer.</p>
+					</div>
+					<div class="py-4 bb1">
+						<h3 class="mb-20 text-grey">Terms and Conditions</h3>
+						<p class="mb-1">Offer is available at dominos website</p>
+						<p class="mb-1">Offer is valid once per customer</p>
+					</div>
+					<div class="p-2" id="reward_division">
+						<a href="#" class="btn btn_primary" id="rewlink">Redeem Now</a>
+					</div>-->
+				</div>
+			</div>
+	    </div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="#cart"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="categoriesPage_new" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Vijaya Dairy</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 align-items-start bg_white">
+      <div id="main_cate" class="repeat_section"></div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="productspg" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start">
+		  <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+		<h3 class="header_title">Products</h3>
+      </div>
+	 <div class="header_right">
+        <div class="header_right_icons d-flex align-items-center"> 
+			<a href="javascript:viewcart();" class="cart_btn"><img src="assets/images/cart.png" class="img-responsive" alt=""></a>
+		  </div>
+      </div>	
+    </div>	  
+  </div>
+  <div data-role="content" class="ui-content p-0 align-items-start bg_white">
+      <div class="product_categories d-flex align-items-start justify-content-between" id="categ_list"></div>
+      <div id="menusection" class="repeat_section"></div>
+  </div>
+  <div class="customize_menu" id="customize_menu" style="display: none"></div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="ordernowpg" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start">
+		  <a href="#homepage" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+		<h3 class="header_title">Order Now</h3>
+      </div>
+	 <div class="header_right">
+        <div class="header_right_icons d-flex align-items-center"> 
+			<!-- <a href="javascript:viewcart();" class="cart_btn"><img src="assets/images/cart.png" class="img-responsive" alt=""></a>12/30/2021 -->
+		  </div>
+      </div>	
+    </div>	  
+  </div>
+  <div data-role="content" class="ui-content p-10 align-items-start bg_white">
+      <div class="primary_block mb-20 p-0"><div class="thumb_group flex-wrap" id="ordernowpg_div"></div></div>
+  </div>
+  <div class="customize_menu" id="customize_menu" style="display: none"></div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="addresspg" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">Vijaya Dairy</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Rohan Verma</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-10 align-items-start bg_white">
+      <div id="innerdata">
+	
+	
+	        <div id="delivery_slot" class="dslot" style="display: none;">
+								<div class="ui-grid-a">
+										<div class="ui-block-a">
+										    <label>Date</label>
+											<input type="date" name="cdate" id="cdate" />
+										</div>
+										<div class="ui-block-b">
+										    <label>Time</label>
+											<input type="time" name="cslot" id="cslot" />
+										</div>
+								</div>
+
+			</div><br>
+            
+              <div class="ui-grid-solo" style="border:1px solid #ddd;">
+                        <div class="ui-block">
+                            <div class="ui-bar ui-bar-a" style="background:#ffffff;margin-bottom:10px;">
+            <div>Please enter the details below to complete your order</div>
+            
+            <input type="text" id="txtfirstname" name="fname" placeholder="First Name*" required />
+            <input type="text" id="txtlastname" name="lname" placeholder="Last Name*" required />
+            <input type="email" id="billing_email" name="billing_email" placeholder="Email*" required>
+            <input type="number" id="billing_phone" name="billing_phone" placeholder="Mobile Phone*" required>
+            </div></div></div>
+
+            <div class="ui-grid-solo" style="border:1px solid #ddd;display:none;">
+            <div class="ui-block">
+            <div class="ui-bar ui-bar-a" style="background:#ffffff;margin-bottom:10px;">
+            <div>Your Delivery Address</div>
+            
+            <input type="text" id="billing_address_1" name="billing_address_1" placeholder="Address 1*" required value="">
+            <input type="text" id="billing_address_2" name="billing_address_2" placeholder="Address 2" required value="">
+            <input type="text" id="billing_city"  name="billing_city" placeholder="City*" required value="">
+            <input type="text" id="billing_state"  name="billing_state" placeholder="State*" required value="">
+            <input type="number" class="form-control" id="billing_postcode"  name="billing_postcode" placeholder="Pincode*" maxlength="6" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  required value="">
+            </div></div></div>
+            
+
+		
+			<div class="text-center mt-20">
+				<a href="javascript:checkviewcart();" data-role="none" class="cartpage_btn">Place Order</a>
+			</div>
+		
+
+  </div>
+  </div>
+  <div class="customize_menu" id="customize_menu" style="display: none"></div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="javascript:viewcart();"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="confirmation_block bg_textured2" id="pay_confirm_pop" data-role="popup">
+						<img src="images/right_mark.png" class="img-responsive" alt="">
+						<h3 id="pdiv">Your Order has been Confirmed.</h3>
+						<div class="confirmation_box" id="pickupcode">Order Id : </div>
+						<div class="btn_wrapper">
+							<a href="#selectcategorypage" class="btn_primary_new2" style="display: inline-block;width: initial">Close</a>
+						</div>
+						
+</div>
+
+</div>
+
+<div data-role="page" data-dom-cache="true" id="my_cart" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start">
+	    <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+		
+        <h3 class="header_title">My Payment</h3>
+      </div>
+      <!--<div class="header_right">
+        <div class="header_right_icons"> <a href="#my_profile" class="user_profile">
+          <div class="user_pic"> <img src="assets/images/user_pic.jpg" class="img-responsive" alt=""> </div>
+          <span>Guest</span> </a> </div>
+      </div>-->
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-10 align-items-start bg_white">
+   <div class="loginreg mt-50">
+                   <h4>Payment Mode</h4>
+				   <div class="pay-section_inner" id="paytmopt" onclick="javascript:setviewcart('paytm');">
+						<div class="pay-block1" onclick="javascript:setviewcart('paytm');">
+								<label>
+									<div class="pay_description">
+									   <img src="assets/images/online_pay.png" class="img-responsive payytype" alt="Card"><h4>Online Payment</h4>
+									</div>
+								</label>
+						</div>						
+      				</div>
+					<div class="pay-section_inner" id="cashopt" onclick="javascript:setviewcart('cash');" style="display:none;">
+						
+						<div class="pay-block1" onclick="javascript:setviewcart('cash');">
+								<label>
+									<div class="pay_description">
+									   <img src="assets/images/card.png" class="img-responsive payytype" alt="Cash"><h4>Cash</h4>
+									</div>
+								</label>
+						</div>						
+      				</div>
+		</div>
+
+      <div id="cartmain" class="loginreg mt-50"></div>
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#selectcategorypage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+	
+<div data-role="page" data-dom-cache="true" id="products1" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start">
+		  <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+		<h3 class="header_title">Product Catalogue</h3>
+      </div>
+	 <div class="header_right">
+        <div class="header_right_icons d-flex align-items-center"> 
+			<a href="#cart" class="cart_btn"><img src="assets/images/cart.png" class="img-responsive" alt=""></a>
+		  </div>
+      </div>	
+    </div>	  
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+	  <div class="out_wrapper">
+		  <div class="inner_wrapper p-0">
+				<div class="product_categories d-flex align-items-start justify-content-between">
+					<a href="#" class="active">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/milk.png" alt="">
+							</div>
+							<span>Milk</span>
+						</div>						
+					</a>  
+					<a href="#">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/ghee.png" alt="">
+							</div>						
+							<span>Ghee</span>
+						</div>						
+					</a> 
+					<a href="#">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/chhachh.png" alt="">
+							</div>						
+							<span>Chhachh</span>
+						</div>						
+					</a>  
+					<a href="#">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/khoya.png" alt="">
+							</div>						
+							<span>Khoya</span>
+						</div>						
+					</a> 
+					<a href="#">
+						<div class="d-flex justify-content-center align-items-center flex-column">
+							<div class="category_img">
+								<img src="assets/images/barfi.png" alt="">
+							</div>						
+							<span>Barfi</span>
+						</div>						
+					</a>  
+				  </div>
+
+					<div class="d-flex justify-content-end w-100">
+						  <ul class="sort_options">
+							<li>
+								<a href="#" class="sort_link" id="toggleSort"><img src="assets/images/sort_icon.png" class="img-responsive" alt=""></a>	
+							  </li>
+							  
+						  </ul>	  	
+					  </div>
+			  
+			  <div class="filter_panel1" id="sort_panel" style="display: none">
+					<div class="ui-grid-a">
+						<div class="ui-block-a">
+							<h3>Sort By</h3>
+						</div>
+						<div class="ui-block-b text-right"> <a href="#" class="filter_close1" id="sortClose">+</a> </div>
+					</div>
+					<div>						
+						<ul class="sort_sub">
+							<li><a href="#">Popularity</a></li>
+							<li><a href="#">Low to High</a></li>
+							<li><a href="#">High to Low</a></li>
+							<li><a href="#">Newest First</a></li>
+						</ul>
+					</div>						
+				</div>
+				<div class="overlay"></div>
+
+					<div class="products w-100 d-flex align-items-start justify-content-between py-3 flex-wrap">
+					<div class="product">
+						<div class="product_img">
+							<img src="assets/images/milk.png" class="img-responsive" alt="">
+						</div>
+						<div class="d-flex align-items-center justify-content-between mt-10 flex-wrap">
+							<div class="product_name">
+								<p>Milk</p>
+								<span class="model_name">Full Cream Milk 500 ml</span>
+							</div>
+							<div class="product_price">
+								<p class="sell_price">Rs. 29</p>
+								<p class="list_price">Rs.32</p>
+							</div>
+						</div>
+						<div class="mt-10 mb-10 text-center">
+							<a href="#cart" class="add_to_cart" data-role="none">Add To Cart</a>
+						</div>
+					  </div>
+					<div class="product">
+						<div class="product_img">
+							<img src="assets/images/prodiet_milk.png" class="img-responsive" alt="">
+						</div>
+						<div class="d-flex align-items-center justify-content-between mt-10 flex-wrap">
+							<div class="product_name">
+								<p>Prodiet Milk</p>
+								<span class="model_name">Prodiet Milk 500 ml</span>
+							</div>
+							<div class="product_price">
+								<p class="sell_price">Rs. 39</p>
+								<p class="list_price">Rs.42</p>
+							</div>
+						</div>
+						<div class="mt-10 mb-10 text-center">
+							<a href="#cart" class="add_to_cart" data-role="none">Add To Cart</a>
+						</div>
+					  </div>
+					<div class="product">
+						<div class="product_img">
+							<img src="assets/images/toned_milk.png" class="img-responsive" alt="">
+						</div>
+						<div class="d-flex align-items-center justify-content-between mt-10 flex-wrap">
+							<div class="product_name">
+								<p>Toned Milk</p>
+								<span class="model_name">Toned Milk 500 ml</span>
+							</div>
+							<div class="product_price">
+								<p class="sell_price">Rs. 22</p>
+								<p class="list_price">Rs.24</p>
+							</div>
+						</div>
+						<div class="mt-10 mb-10 text-center">
+							<a href="#cart" class="add_to_cart" data-role="none">Add To Cart</a>
+						</div>
+					  </div>
+					<div class="product">
+						<div class="product_img">
+							<img src="assets/images/double_toned_milk.png" class="img-responsive" alt="">
+						</div>
+						<div class="d-flex align-items-center justify-content-between mt-10 flex-wrap">
+							<div class="product_name">
+								<p>Double Toned Milk</p>
+								<span class="model_name">Double Toned Milk 500 ml</span>
+							</div>
+							<div class="product_price">
+								<p class="sell_price">Rs. 18</p>
+								<p class="list_price">Rs.20</p>
+							</div>
+						</div>
+						<div class="mt-10 mb-10 text-center">
+							<a href="#cart" class="add_to_cart" data-role="none">Add To Cart</a>
+						</div>
+					  </div>
+						<div class="product">
+						<div class="product_img">
+							<img src="assets/images/skimed_milk.png" class="img-responsive" alt="">
+						</div>
+						<div class="d-flex align-items-center justify-content-between mt-10 flex-wrap">
+							<div class="product_name">
+								<p>Skimmed Milk</p>
+								<span class="model_name">Skimmed Milk 500 ml</span>
+							</div>
+							<div class="product_price">
+								<p class="sell_price">Rs. 50</p>
+								<p class="list_price">Rs.55</p>
+							</div>
+						</div>
+						<div class="mt-10 mb-10 text-center">
+							<a href="#cart" class="add_to_cart" data-role="none">Add To Cart</a>
+						</div>
+					  </div>
+				  </div>
+		  </div>
+	  </div>
+   		
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="#cart"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div data-role="page" data-dom-cache="true" id="cart" class="full_height bg_white">
+  <div data-role="header" class="inner_header" data-position="fixed" data-tap-toggle="false">
+    <div class="d-flex align-items-center justify-content-between main_header bb1">
+      <div class="d-flex align-items-center justify-content-start"> <a href="#" data-rel="back" class="sidemenu_btn" data-role="none"> <img src="assets/images/back_btn.png" class="img-responsive" alt=""> </a>
+        <h3 class="header_title">My Cart</h3>
+      </div>
+    </div>
+  </div>
+  <div data-role="content" class="ui-content p-0 d-flex align-items-start bg_white">
+	  <div class="out_wrapper">
+		  <div class="inner_wrapper pt-0">
+			<div class="cart_main" id="cart_main">			
+				<div class="cart_item w-100">
+					<div class="cart_item_header bb1 w-100">
+						<div class="cart_item_name">
+							<div class="cart_item_inner">
+								<div class="item_name">
+									<span>Pro Diet Milk</span>												
+								</div>											
+							</div>
+							<div class="cart_qty">		   				
+								<button  onclick="removeProduct(this)" data-role="none" class="spinner_button removeProduct">-</button>
+								<input class="quantity" min="0" name="quantity" value="1" type="number" data-role="none">
+								<button  onclick="addToCart(this)" class="spinner_button" data-role="none">+</button>
+							</div>
+							<div class="cart_item_price">Rs. 180</div>
+						</div>	
+						<div class="">
+							<p class="item_brief1">500ml</p>
+						</div>
+					</div>								
+				</div>
+
+				<div class="cart_check mt-10">
+					<div class="cart_inner">
+						<div class="inner_text">Item Total:</div>
+						<div class="inner_price">Rs. 180</div>
+					</div>
+				</div>
+				<div class="cart_check">
+					<div class="cart_inner">
+						<div class="inner_text">SGST(12%):</div>
+						<div class="inner_price">Rs. 25</div>
+					</div>
+				</div>
+				<div class="cart_check">
+					<div class="cart_inner">
+						<div class="inner_text">CGST(12%):</div>
+						<div class="inner_price">Rs. 25</div>
+					</div>
+				</div>
+				<div class="cart_check bb1">
+					<div class="cart_inner">
+						<div class="inner_text">Offers 10% off</div>
+						<div class="inner_price">Rs. -25</div>
+					</div>
+				</div>
+				<div class="cart_check">
+					<div class="cart_inner">
+						<h3 class="mt-0">To Pay</h3>
+						<h3 class="mt-0">Rs. 225</h3>
+					</div>
+				</div>
+				<div class="mt-10 mb-10 promo_section">
+					<div class="promo_code">
+						<input type="text" data-role="none" value="DJH55J">
+					</div>
+					<div class="promo_btn">
+						<a href="#">Applied</a>
+					</div>
+				</div>
+				<!--<a href="#promo_codes" class="promo_link">Have a  promo Code?</a>-->
+				<div class="text-center mt-20">
+					<a href="javascript:getpaymentmethod();" data-role="none" class="cartpage_btn">MAKE PAYMENT</a>
+				</div>
+					   	</div>
+		  </div>
+	  </div>
+   		
+  </div>
+  <div data-role="footer" data-position="fixed" data-tap-toggle="false" class="footer" data-hide-during-focus="false">
+    <div class="footer_nav">
+      <ul>
+        <li><a href="#homepage"><img src="assets/images/footer_home.png" alt=""><span>Home</span></a></li>
+        <li><a href="#my_membership"><img src="assets/images/footer_my_membership.png" alt=""><span>My Membership</span></a></li>
+        <li><a href="#cart"><img src="assets/images/footer_cart.png" alt=""><span>Cart</span></a></li>
+        <li><a href="#contactus"><img src="assets/images/footer_contact.png" alt=""><span>Contact us</span></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+	
+
+	
+		
+<div id="wait" style="display:none;width:69px;height:89px;border:0px solid black;position:absolute;top:50%;left:40%;padding:2px;"><img src="assets/img/load.gif" width="60" height="60" /></div>
+	
+
+<!--page--> 
+<script src="assets/js/jquery.mousewheel.min.js"></script>
+	
+<script>
+		function addToCart(e){
+			e.parentNode.querySelector('input[type=number]').stepUp();	
+			$(".customize_menu").slideUp("fast");
+			$("#viewCart").slideUp("fast");
+		}
+		function removeProduct(e){
+			e.parentNode.querySelector('input[type=number]').stepDown();
+		}
+</script>	
+	
+</body>
+</html>
